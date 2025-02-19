@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Facts About Astronomy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .fact-display {
+            margin: 20px 0;
+            font-size: 1.2em;
+            min-height: 60px;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .fact-display {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fun Facts About Astronomy</h1>
+        <div id="fact-display" class="fact-display">Click the button to see a fun fact!</div>
+        <button id="new-fact-btn" class="btn">Show Fun Fact</button>
+        <button id="share-github-btn" class="btn">Share on GitHub</button>
+    </div>
+    <script>
+        const facts = [
+            "The universe is approximately 13.8 billion years old.",
+            "There are more stars in the universe than grains of sand on all the Earth's beaches.",
+            "A day on Venus is longer than a year on Venus.",
+            "Neutron stars are so dense that a sugar-cube-sized amount of material from one would weigh about as much as all of humanity.",
+            "The footprints on the Moon will remain there for millions of years because there is no atmosphere to erode them.",
+            "One million Earths could fit inside the Sun.",
+            "The largest volcano in the solar system is Olympus Mons on Mars, which is about 13.6 miles (22 kilometers) high.",
+            "Light from the Sun takes about 8 minutes and 20 seconds to reach Earth.",
+            "There are more than 200 billion galaxies in the observable universe.",
+            "Saturn is the flattest planet in the solar system due to its low density and fast rotation."
+        ];
+
+        let lastFactIndex = -1;
+
+        document.getElementById('new-fact-btn').addEventListener('click', () => {
+            let factIndex;
+            do {
+                factIndex = Math.floor(Math.random() * facts.length);
+            } while (factIndex === lastFactIndex);
+            lastFactIndex = factIndex;
+
+            const factDisplay = document.getElementById('fact-display');
+            factDisplay.style.opacity = 0;
+            setTimeout(() => {
+                factDisplay.textContent = facts[factIndex];
+                factDisplay.style.opacity = 1;
+            }, 500);
+        });
+
+        document.getElementById('share-github-btn').addEventListener('click', () => {
+            const url = "https://github.com/"; // Replace with your GitHub repository URL
+            window.open(url, '_blank');
+        });
+    </script>
+</body>
+</html>
